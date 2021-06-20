@@ -12,19 +12,15 @@ const publicDirectoryPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirectoryPath));
 
-const greeting = 'Welcome!';
-
 io.on('connection', (socket) => {
     console.log('New WebSocket connection');
 
-    socket.emit('message', greeting);
+    socket.emit('message', 'Welcome!');
+    socket.broadcast.emit('message', 'A new user has joined!');
 
-    // socket.emit('countUpdated', count);
-
-    // socket.on('increment', () => {
-    //     count++;
-    //     io.emit('countUpdated', count);
-    // })
+    socket.on('sendMessage', (message) => {
+        io.emit('message', message);
+    })
 })
 
 server.listen(port, () => {

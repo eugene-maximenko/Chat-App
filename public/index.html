@@ -6,7 +6,12 @@
 
 <body>
     Chat app
-    <button id="increment">+1</button>
+
+    <form id="message-form">
+        <input name="message" placeholder="Message">
+        <button id="submit">Send </button>
+    </form>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
 </body>
