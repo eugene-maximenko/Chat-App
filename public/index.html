@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html>
+<title>Chat App</title>
+<link rel="icon" href="/img/favicon.png">
+<link rel="stylesheet" href="/css/styles.min.css">
 
 <head>
 </head>
 
 <body>
+    <div class="chat">
+        <div class="chat__sidebar"></div>
+        <div class="chat__main">
+            <!-- Adding here dynamic messages via chat.js and HTML template -->
+            <div id="messages"></div>
+
+            <form id="message-form">
+                <input name="message" placeholder="Message">
+                <button id="submit">Send </button>
+            </form>
+            <button id="send-location">Send location</button>
+        </div>
+    </div>
+
     Chat App
 
-    <!-- Adding here dynamic messages via chat.js and HTML template -->
-    <div id="messages"></div>
 
-    <form id="message-form">
-        <input name="message" placeholder="Message">
-        <button id="submit">Send </button>
-    </form>
-    <button id="send-location">Send location</button>
 
     <script id="message-template" type="text/html">
         <div>
