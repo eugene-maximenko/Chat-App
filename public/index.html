@@ -10,32 +10,41 @@
 <body>
     <div class="chat">
         <div class="chat__sidebar"></div>
+
         <div class="chat__main">
             <!-- Adding here dynamic messages via chat.js and HTML template -->
-            <div id="messages"></div>
+            <div id="messages" class="chat__messages"></div>
 
-            <form id="message-form">
-                <input name="message" placeholder="Message">
-                <button id="submit">Send </button>
-            </form>
-            <button id="send-location">Send location</button>
+            <div class="compose">
+                <form id="message-form">
+                    <input name="message" placeholder="Message">
+                    <button id="submit">Send </button>
+                </form>
+
+                <button id="send-location">Send location</button>
+            </div>
+
         </div>
     </div>
 
-    Chat App
-
-
-
     <script id="message-template" type="text/html">
-        <div>
-            <p>{{createdAt}} - {{message}}</p>
-        </div>
+        <div class="message">
+            <p>
+                <span class="message__name">Some User Name</span>
+                <span class="message_meta">{{createdAt}}</span>
+            </p>
+            <p>{{message}}</p>
+        </div> 
     </script>
 
     <!-- A template for location -->
     <script id="location-message-template" type="text/html">
-        <div> 
-            <p>{{createdAt}} - <a href="{{url}}" target="_blank">My current location</a></p>
+        <div class="message">
+            <p>
+                <span class="message__name">Some User Name</span>
+                <span class="message_meta">{{createdAt}}</span>
+            </p>
+            <p><a href="{{url}}" target="_blank">My current location</a></p>
         </div>
     </script>
 
