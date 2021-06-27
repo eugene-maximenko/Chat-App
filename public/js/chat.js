@@ -81,4 +81,10 @@ $sendLocationButton
 socket.emit('join', {
     username,
     room
+}, (error) => {
+    // Redirect user to join page
+    if (error) {
+        alert(error);
+        location.href = '/';
+    }
 })
