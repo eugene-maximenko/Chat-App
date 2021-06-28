@@ -16,11 +16,30 @@
                 <input type="text" name="username" placeholder="Display name" required>
                 <label>Room</label>
                 <input type="text" name="room" placeholder="Room" required>
-                <select width="100px"></select>
+                <!-- Place for list of rooms -->
+                <div id="rooms-list"></div>
                 <button>Join</button>
             </form>
         </div>
     </div>
+
+    <!-- List of rooms template -->
+    <script id="rooms-list-template" type="text/html">
+        <h3 class="list-title">Users</h3>
+        <ul class="users">
+             {{#users}}
+                <li>{{username}}</li>
+             {{/users}}
+        </ul>
+        <select class='rooms'>
+            {{#rooms}}
+                <option>{{room}}</option>
+            {{/rooms}}
+        </select>
+    </script>
+
 </body>
+
+
 
 </html>
