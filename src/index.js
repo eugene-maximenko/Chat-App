@@ -4,7 +4,8 @@ const express = require('express');
 const socketio = require('socket.io');
 const Filter = require('bad-words');
 const { generateMessage, generateLocationMessage } = require('./utils/messages');
-const { addUser, removeUser, getUser, getUsersInRoom} = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
+const { addRoom } = require('./utils/rooms');
 
 const app = express();
 const server = http.createServer(app);
@@ -15,20 +16,11 @@ const publicDirectoryPath = path.join(__dirname, '../public');
 
 app.use(express.static(publicDirectoryPath));
 
-// Show to user a select HTMl element with the list of all active rooms
-/* index.html need to connect to backend, so it can get the list of rooms. 
-I need a js file. 
-
-When a new user visit the chat app, he should type the name manualy, or choose pick the room from the list
-1. Create a select element on join page
-2. 
-
-*/
-
 io.on('connection', (socket) => {
     console.log('New WebSocket connection');
 
     socket.on('join', (options, callback) => {
+        console.log(options.room);
         const { error, user } = addUser({ id: socket.id, ...options })
 
         if (error) {
@@ -36,6 +28,7 @@ io.on('connection', (socket) => {
         }
 
         socket.join(user.room)
+        addRoom(user.room);
 
         socket.emit('message', generateMessage('Admin', 'Welcome!'));
         socket.broadcast.to(user.room).emit('message', generateMessage('Admin', `${user.username} has joined!`));

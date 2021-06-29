@@ -1,9 +1,43 @@
 /* 
+Chat.js will gets the array with all active unique rooms
+Chat.js will listen to an event with the array of all active unique rooms
 
-Get the actual rooms list in my select element
-
-1. Client emit the event to server when it contains.
-2. The server listens to the event and checks, if there any users in users array, it sends to the client the array with all room names;
-3. If there no users, the server sends nothing.
+Write a function, which will add unique rooms
 
 */
+
+const rooms = [];
+
+const addRoom = (roomname) => {
+    console.log(rooms);
+    // Clean the data
+    roomname = roomname.trim().toLowerCase();
+
+    // Validate the data
+    if (!roomname) {
+        return {
+            error: 'Room is required!'
+        }
+    }
+
+    // Check for existing room
+    const existingRoom = rooms.find(room => rooms.roomname === roomname);
+
+    // Validate room
+    if (existingRoom) {
+        return {
+            error: 'Room is in list!'
+        }
+    }
+
+    // Store room
+    const room = {roomname};
+    rooms.push(room);
+
+    console.log(rooms);
+    
+}
+
+module.exports = {
+    addRoom
+}

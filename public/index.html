@@ -17,7 +17,9 @@
                 <label>Room</label>
                 <input type="text" name="room" placeholder="Room" required>
                 <!-- Place for list of rooms -->
-                <div id="rooms-list"></div>
+                <div id="rooms-list">
+                    <h5 class="rooms-list-title">Users</h5>
+                </div>
                 <button>Join</button>
             </form>
         </div>
@@ -25,12 +27,7 @@
 
     <!-- List of rooms template -->
     <script id="rooms-list-template" type="text/html">
-        <h3 class="list-title">Users</h3>
-        <ul class="users">
-             {{#users}}
-                <li>{{username}}</li>
-             {{/users}}
-        </ul>
+        <h3 class="rooms-list-title">Users</h3>
         <select class='rooms'>
             {{#rooms}}
                 <option>{{room}}</option>
