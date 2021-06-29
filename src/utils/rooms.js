@@ -8,7 +8,7 @@ Write a function, which will add unique rooms
 
 const rooms = [];
 
-const addRoom = (roomname) => {
+const addRoom = roomname => {
     console.log(rooms);
     // Clean the data
     roomname = roomname.trim().toLowerCase();
@@ -21,7 +21,7 @@ const addRoom = (roomname) => {
     }
 
     // Check for existing room
-    const existingRoom = rooms.find(room => rooms.roomname === roomname);
+    const existingRoom = rooms.find(room => room.roomname === roomname);
 
     // Validate room
     if (existingRoom) {
@@ -31,13 +31,25 @@ const addRoom = (roomname) => {
     }
 
     // Store room
-    const room = {roomname};
+    const room = { roomname };
     rooms.push(room);
 
     console.log(rooms);
-    
+
 }
 
+const removeRoom = roomname => {
+    console.log(rooms);
+    const index = rooms.findIndex(room => room.roomname === roomname);
+
+    if (index !== -1) {
+        rooms.splice(index, 1);
+        console.log(rooms);
+    }
+}
+// const getRooms = ()
+
 module.exports = {
-    addRoom
+    addRoom,
+    removeRoom
 }

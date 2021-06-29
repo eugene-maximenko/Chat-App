@@ -1,5 +1,20 @@
 const users = [];
 
+const getRooms = (usersArray) => {
+
+    const uniqueRooms = new Set();
+
+    // Checks if there any unique Rooms array 
+    usersArray.forEach(elementOfUsersArray => {
+
+        uniqueRooms.add(elementOfUsersArray.room);
+
+    });
+    
+    console.log('It`s an ouput form getRooms!');
+    console.log(uniqueRooms);
+}
+
 // Adding a user to the users array
 const addUser = ({ id, username, room }) => {
     // Clean the data
@@ -28,6 +43,7 @@ const addUser = ({ id, username, room }) => {
     // Store user
     const user = { id, username, room };
     users.push(user);
+    getRooms(users);
     return { user }
 }
 
