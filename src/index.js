@@ -30,6 +30,7 @@ io.on('connection', (socket) => {
     socket.on('join', (options, callback) => {
         console.log('New connection from chat page!')
         const { error, user } = addUser({ id: socket.id, ...options })
+        io.emit('roomList', getUniqueRooms());
         
         if (error) {
             return callback(error);
@@ -71,7 +72,7 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
         const user = removeUser(socket.id);
-
+        io.emit('roomList', getUniqueRooms());
         if (user) {
             io.to(user.room).emit('message', generateMessage('Admin', `${user.username} has left!`));
 

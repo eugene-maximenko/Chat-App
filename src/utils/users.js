@@ -1,33 +1,21 @@
 const users = [{ id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'odessa' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'odessa' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }];
 
+// Get the list of unique rooms to render it dynamic on join page
 const getUniqueRooms = () => {
-    /* Мне нужно превратить  
-    
-    [ { id: '1lUZr3UKGhLKiyLeAAAH', username: 'фыва', room: 'фыва' } ] --> 
-    [ { roomname: 'Odessa' } ]
-    */
     const uniqueRooms = [{ roomname: '' }];
 
     users.forEach(userElement => {
-
-        // console.log('Here is uniqueRooms arr at the beginning:', uniqueRooms);
         const existingRoom = uniqueRooms.find(roomElement => {
             return userElement.room === roomElement.roomname;
         })
 
-        // Check the value of existingRoom
-        // console.log(existingRoom);
 
         if (!existingRoom) {
             uniqueRooms.push({ roomname: userElement.room })
         }
-
-        // console.log('Here is uniqueRooms arr at the end:', uniqueRooms);
     })
     return ('Here is uniqueRooms arr at the end:', uniqueRooms);
 }
-
-console.log('Here is a return value from users.js:', getUniqueRooms());
 
 // Adding a user to the users array
 const addUser = ({ id, username, room }) => {
