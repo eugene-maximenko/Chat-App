@@ -4,7 +4,7 @@ const express = require('express');
 const socketio = require('socket.io');
 const Filter = require('bad-words');
 const { generateMessage, generateLocationMessage } = require('./utils/messages');
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users');
+const { addUser, removeUser, getUser, getUsersInRoom, getUniqueRooms } = require('./utils/users');
 
 const app = express();
 const server = http.createServer(app);
@@ -16,11 +16,21 @@ const publicDirectoryPath = path.join(__dirname, '../public');
 app.use(express.static(publicDirectoryPath));
 
 io.on('connection', (socket) => {
-    console.log('New WebSocket connection');
 
+    // Index.js
+    socket.on('joinPageGreeting', () => {
+        console.log('We have a new connection from join page ;)')
+
+        io.emit('roomList', getUniqueRooms());
+    })
+
+    
+
+    // Chat.js
     socket.on('join', (options, callback) => {
+        console.log('New connection from chat page!')
         const { error, user } = addUser({ id: socket.id, ...options })
-
+        
         if (error) {
             return callback(error);
         }
@@ -35,8 +45,7 @@ io.on('connection', (socket) => {
             room: user.room,
             users: getUsersInRoom(user.room)
         })
-        
-        console.log(getUsersInRoom(user.room));
+
         callback();
     })
 
