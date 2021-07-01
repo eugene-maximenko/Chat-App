@@ -36,6 +36,7 @@ io.on('connection', (socket) => {
             users: getUsersInRoom(user.room)
         })
         
+        console.log(getUsersInRoom(user.room));
         callback();
     })
 
