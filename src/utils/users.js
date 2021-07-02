@@ -1,8 +1,8 @@
-const users = [{ id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'odessa' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'odessa' }, { id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }];
+const users = [];
 
 // Get the list of unique rooms to render it dynamic on join page
 const getUniqueRooms = () => {
-    const uniqueRooms = [{ roomname: '' }];
+    const uniqueRooms = [];
 
     users.forEach(userElement => {
         const existingRoom = uniqueRooms.find(roomElement => {

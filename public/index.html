@@ -12,15 +12,17 @@
         <div class="centered-form__box">
             <h1>Join</h1>
             <form action="/chat.html">
+                
                 <label>Display name</label>
                 <input type="text" name="username" placeholder="Display name" required>
+
                 <label>Room</label>
                 <input type="text" name="room" placeholder="Room" required>
                 
                 <!-- Place for list of rooms -->
                 <div id="rooms-list"></div>
                 
-                <button>Join</button>
+                <button id="join-button">Join</button>
             </form>
         </div>
     </div>
@@ -34,6 +36,7 @@
             {{/rooms}}
         </select>
     </script>
+
     <!-- Socket script -->
     <script src="/socket.io/socket.io.js"></script>
     
