@@ -11,17 +11,18 @@
     <div class="centered-form">
         <div class="centered-form__box">
             <h1>Join</h1>
-            <form action="/chat.html">
-                
+            <!-- <form action="/chat.html" > -->
+            <form>
+
                 <label>Display name</label>
-                <input type="text" name="username" placeholder="Display name" required>
+                <input type="text" id="username" name="username" placeholder="Display name" required>
 
                 <label>Room</label>
-                <input type="text" name="room" placeholder="Room" required>
-                
+                <input type="text" id="room" name="room" placeholder="Room" required>
+
                 <!-- Place for list of rooms -->
                 <div id="rooms-list"></div>
-                
+
                 <button id="join-button">Join</button>
             </form>
         </div>
@@ -30,7 +31,7 @@
     <!-- List of rooms template -->
     <script id="rooms-list-template" type="text/html">
         <h5 class="rooms-list-title">Active rooms</h5>
-        <select class='rooms'>
+        <select class='rooms' id="rooms">
             {{#rooms}}
                 <option>{{roomname}}</option>
             {{/rooms}}
@@ -39,7 +40,7 @@
 
     <!-- Socket script -->
     <script src="/socket.io/socket.io.js"></script>
-    
+
     <!-- Library for HTML templates -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.js"></script>
     <script src="/js/index.js"></script>
