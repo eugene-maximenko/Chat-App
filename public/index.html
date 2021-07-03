@@ -18,7 +18,9 @@
                 <input type="text" id="username" name="username" placeholder="Display name" required>
 
                 <label>Room</label>
-                <input type="text" id="room"  placeholder="Room" required>
+                <!-- <input type="text" id="room"  placeholder="Room" required> -->
+                
+                <input type="text" id="room"  placeholder="Room">
 
                 <!-- Place for list of rooms -->
                 <div id="rooms-list"></div>
@@ -31,8 +33,8 @@
     <!-- List of rooms template -->
     <script id="rooms-list-template" type="text/html">
         <h5 class="rooms-list-title">Active rooms</h5>
-        <select class='rooms' name="room" id="rooms">
-                <option selected>Choose the room</option>
+        <select class='rooms'  id="rooms">
+                <option selected>Choose your room</option>
             {{#rooms}}
                 <option>{{roomname}}</option>
             {{/rooms}}

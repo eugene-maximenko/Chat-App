@@ -19,18 +19,23 @@ window.onload = () => {
     joinButton.addEventListener('click', (e) => {
         e.preventDefault();
         console.log('Join button was clicked!');
-        
+
         const username = document.querySelector('#username').value;
-        const room = document.querySelector('#room').value;
+        let room = document.querySelector('#room').value;
         const selected = document.querySelector('#rooms').value;
-        console.log(username, room, selected);
-        
-        window.location.href = `http://localhost:3000/chat.html?username=${username}&room=${selected}`
+
+        if (room && selected !== "Choose your room") {
+            return alert(`Please choose the room or only type it's name!`);
+        }
+
+        if (selected !== "Choose your room") {
+            room = selected;
+        }
+
+        room = room;
+        console.log(room);
+
+        window.location.href = `http://localhost:3000/chat.html?username=${username}&room=${room}`
 
     });
 }
-/*
-I need to add an event listener on join button in index.html (Done!)
-Inside of the event listener I'll check if the fields were filled out and redirect the user.
-I'll fill the query parameters on my own with the value from Room field or the value of select HTML element, so chat.js can get them as usual
-*/
