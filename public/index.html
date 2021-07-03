@@ -11,18 +11,17 @@
     <div class="centered-form">
         <div class="centered-form__box">
             <h1>Join</h1>
-            <!-- <form action="/chat.html" > -->
+            <!-- This form is processed in index.js -->
             <form>
 
                 <label>Display name</label>
-                <input type="text" id="username" name="username" placeholder="Display name" required>
+                <input type="text" id="username" placeholder="Display name" required>
 
                 <label>Room</label>
-                <!-- <input type="text" id="room"  placeholder="Room" required> -->
-                
-                <input type="text" id="room"  placeholder="Room">
 
-                <!-- Place for list of rooms -->
+                <input type="text" id="room" placeholder="Room">
+
+                <!-- Section for list of rooms temlate -->
                 <div id="rooms-list"></div>
 
                 <button id="join-button">Join</button>
@@ -34,18 +33,21 @@
     <script id="rooms-list-template" type="text/html">
         <h5 class="rooms-list-title">Active rooms</h5>
         <select class='rooms'  id="rooms">
+                <!-- Default option -->
                 <option selected>Choose your room</option>
+            <!-- Section for list of active rooms -->
             {{#rooms}}
                 <option>{{roomname}}</option>
             {{/rooms}}
         </select>
     </script>
 
-    <!-- Socket script -->
+    <!-- Socket-client script -->
     <script src="/socket.io/socket.io.js"></script>
 
-    <!-- Library for HTML templates -->
+    <!-- Mustache library for HTML templates -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.0/mustache.js"></script>
+    <!-- JS script -->
     <script src="/js/index.js"></script>
 </body>
 
