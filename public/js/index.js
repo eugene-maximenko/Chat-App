@@ -16,14 +16,16 @@ socket.on('roomList', rooms => {
 window.onload = () => {
     let joinButton = document.querySelector('#join-button');
 
-    joinButton.addEventListener('click', () => {
+    joinButton.addEventListener('click', (e) => {
+        e.preventDefault();
         console.log('Join button was clicked!');
-        // window.location.href = 'http://localhost:3000/chat.html?asd'
-
+        
         const username = document.querySelector('#username').value;
         const room = document.querySelector('#room').value;
         const selected = document.querySelector('#rooms').value;
         console.log(username, room, selected);
+        
+        window.location.href = `http://localhost:3000/chat.html?username=${username}&room=${selected}`
 
     });
 }
