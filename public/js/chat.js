@@ -1,3 +1,4 @@
+// Setting up a connection with the server
 const socket = io();
 
 // Elements
@@ -11,6 +12,7 @@ const $messages = document.querySelector('#messages');
 const messageTemplate = document.querySelector('#message-template').innerHTML;
 const locationMessageTemplate = document.querySelector('#location-message-template').innerHTML;
 const sidebarTemplate = document.querySelector('#sidebar-template').innerHTML;
+
 // Options
 const { username, room } = Qs.parse(location.search, {
     ignoreQueryPrefix: true
@@ -30,10 +32,11 @@ const autoscroll = () => {
 
     // Height of messages container
     const containerHeight = $messages.scrollHeight;
- 
+
     // How far have I scrolled?
     const scrollOffset = $messages.scrollTop + visibleHeight;
 
+    // Autoscroll
     if (containerHeight - newMessageHeight <= scrollOffset) {
         $messages.scrollTop = $messages.scrollHeight;
     }
@@ -77,17 +80,20 @@ socket.on('roomData', ({ room, users }) => {
 $messageForm
     .addEventListener('submit', (e) => {
         e.preventDefault()
-
+        
+        // Temporarily disabling the element
         $messageFormButton.setAttribute('disabled', 'disabled');
 
+        // Get the value of message
         const message = e.target.elements.message.value;
 
+        // Enabling a button, clear the input field and focus the cursor
         socket.emit('sendMessage', message, (error) => {
             $messageFormButton.removeAttribute('disabled');
             $messageFormInput.value = '';
             $messageFormInput.focus();
 
-
+            // Log the error
             if (error) {
                 return console.log(error);
             }
@@ -98,16 +104,21 @@ $messageForm
 
 $sendLocationButton
     .addEventListener('click', () => {
+        // Check, if browser support geolocation
         if (!navigator.geolocation) {
             return alert('Geolocation is not supported by your browser.');
         }
 
+        // Temporarily disabling location button
         $sendLocationButton.setAttribute('disabled', 'disabled');
+
+        // Send current bosition to the server
         navigator.geolocation.getCurrentPosition((position) => {
             socket.emit('sendLocation', {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             }, () => {
+                // Enabling the location button
                 $sendLocationButton.removeAttribute('disabled');
                 console.log('Location shared!');
             });
@@ -116,10 +127,12 @@ $sendLocationButton
 
     })
 
+// Send the event to the server with name of user and name of room he want to join
 socket.emit('join', {
     username,
     room
 }, (error) => {
+
     // Redirect user to join page
     if (error) {
         alert(error);
