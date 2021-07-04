@@ -3,18 +3,19 @@ const users = [{ id: 'HhO_wnIprKraVchGAAAD', username: 'eugenef', room: 'kiev' }
 // Get the list of unique rooms to render it dynamic on join page
 const getUniqueRooms = () => {
     const uniqueRooms = [];
-
+    
     users.forEach(userElement => {
+        // Check for existing room
         const existingRoom = uniqueRooms.find(roomElement => {
             return userElement.room === roomElement.roomname;
         })
 
-
+        // Validate data and fill up the uniqueRooms array
         if (!existingRoom) {
             uniqueRooms.push({ roomname: userElement.room })
         }
     })
-    return ('Here is uniqueRooms arr at the end:', uniqueRooms);
+    return uniqueRooms;
 }
 
 // Adding a user to the users array
@@ -48,18 +49,23 @@ const addUser = ({ id, username, room }) => {
     return { user }
 }
 
+// Removing a user from users array
 const removeUser = (id) => {
+    // Find a user
     const index = users.findIndex(user => user.id === id)
 
+    // Removing a user
     if (index !== -1) {
         return users.splice(index, 1)[0];
     }
 }
 
+// Get a user from users array
 const getUser = (id) => {
     return users.find(user => user.id === id);
 }
 
+// Get all users from one room
 const getUsersInRoom = (room) => {
     return users.filter(user => user.room === room);
 }
