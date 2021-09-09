@@ -42,7 +42,7 @@ window.onload = () => {
         }
 
         // Generate a link for redirecting
-        window.location.href = `http://localhost:3000/chat.html?username=${username}&room=${room}`
+        window.location.href = `${window.location.href}chat.html?username=${username}&room=${room}`
 
     });
 }
