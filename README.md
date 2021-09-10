@@ -1,4 +1,4 @@
-# Weather Website
+# Chat application
 
 Chat is an application built on WebSocket. You can use it to chat with your friends: just enter your name and choose or create a new chat room. 
 
